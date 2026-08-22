@@ -1,0 +1,111 @@
+<!--
+INDEX.HTML - Main Dashboard Template
+====================================
+This is the main user interface for CodeGuard.
+
+COMMANDS TO TEST:
+-----------------
+# Open dashboard in browser:
+# http://127.0.0.1:8000
+
+# Test API endpoint:
+# http://127.0.0.1:8000/docs
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGuard — Application Security</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+    <div>
+        <div class="brand">🛡️ CodeGuard</div>
+        <div class="subtitle">AI-Powered Application Security & Vulnerability Analyzer</div>
+    </div>
+    <div class="developer">Developed by <strong>Uzair Ehsan</strong></div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">SECURITY ANALYSIS CENTER</p>
+            <h1>Find vulnerabilities before deployment.</h1>
+            <p class="hero-text">
+                Upload a Python source file and CodeGuard will analyze it for
+                common security weaknesses, calculate a security score, and
+                provide practical remediation guidance.
+            </p>
+            <p style="color:#36d399;font-size:14px;">
+                🔍 Supports: eval/exec • SQL Injection • Command Injection • 
+                Hardcoded Secrets • Unsafe Pickle • Debug Mode • Weak Passwords
+            </p>
+        </div>
+        <div class="shield">🛡️</div>
+    </section>
+
+    <section class="card scanner-card">
+        <h2>Scan Python Source Code</h2>
+        <p class="muted">Upload a <code>.py</code> file to analyze for security vulnerabilities.</p>
+        <form id="scanForm">
+            <input id="fileInput" type="file" accept=".py" required>
+            <button type="submit">🔍 Scan Project</button>
+        </form>
+        <div id="status" style="margin-top:12px;color:#8fa5bd;"></div>
+    </section>
+
+    <section id="results" class="hidden">
+        <div class="grid">
+            <div class="card score-card">
+                <p class="muted">SECURITY SCORE</p>
+                <div id="score" class="score">—</div>
+                <div class="score-label">out of 100</div>
+                <div style="margin-top:8px;color:#8fa5bd;font-size:12px;">
+                    Higher is better (100 = No vulnerabilities)
+                </div>
+            </div>
+            <div class="card">
+                <p class="muted">CRITICAL</p>
+                <div id="critical" class="metric critical">0</div>
+                <div style="color:#8fa5bd;font-size:12px;">Immediate action required</div>
+            </div>
+            <div class="card">
+                <p class="muted">HIGH</p>
+                <div id="high" class="metric high">0</div>
+                <div style="color:#8fa5bd;font-size:12px;">Fix as soon as possible</div>
+            </div>
+            <div class="card">
+                <p class="muted">MEDIUM</p>
+                <div id="medium" class="metric medium">0</div>
+                <div style="color:#8fa5bd;font-size:12px;">Should be addressed</div>
+            </div>
+            <div class="card">
+                <p class="muted">LOW</p>
+                <div id="low" class="metric low">0</div>
+                <div style="color:#8fa5bd;font-size:12px;">Minor issues</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <h2>Security Findings</h2>
+                <span id="scanId" class="badge"></span>
+            </div>
+            <div id="findings"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top:60px;padding:20px 0;border-top:1px solid #20384f;text-align:center;color:#8fa5bd;">
+        <p>
+            🛡️ CodeGuard v1.0.0 • Developed by Uzair Ehsan • 
+            <a href="/docs" style="color:#36d399;text-decoration:none;">API Documentation</a>
+        </p>
+    </footer>
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
